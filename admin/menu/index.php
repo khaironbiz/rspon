@@ -1,5 +1,5 @@
 <?php
-$title = 'Master Modul';
+$title = 'Master Menu';
 $sub    = "../../config/layout/fluid.php";
 require_once '../../config/koneksi/koneksi.php';
 require_once '../../config/koneksi/web.php';
@@ -17,38 +17,43 @@ require_once($sub);
             <!-- /# row -->
             <section id="main-content">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-10">
                         <div class="card">
                             <h3><?php echo $title ?></h3>
 
                             <div class="bootstrap-data-table-panel">
                                 <div class="table-responsive">
-                                    <a href="create.php" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Tambah Modul</a>
+                                    <a href="create.php" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Tambah Menu</a>
                                     <table class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama Modul</th>
                                                 <th>Folder Modul</th>
-                                                <th>Dibuat</th>
+                                                <th>Nama Menu</th>
+                                                <th>Folder Menu</th>
+                                                <th>Icon</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
                                             $no = 1;
-                                            $data = mysqli_query($koneksi, "SELECT * FROM modul ORDER BY nama_modul ASC");
+                                            $data = mysqli_query($koneksi, "SELECT * FROM menu INNER JOIN modul on menu.id_modul=modul.id
+                                             ORDER BY modul.nama_modul ASC");
                                             while ($d = mysqli_fetch_assoc($data)) {
                                             ?>
                                                 <tr>
                                                     <td><?php echo $d['id']; ?></td>
                                                     <td><?php echo $d['nama_modul']; ?></td>
                                                     <td><?php echo $d['folder_modul']; ?></td>
-                                                    <td><?php echo $d['create']; ?></td>
+                                                    <td><?php echo $d['nama_menu']; ?></td>
+                                                    <td><?php echo $d['folder_menu']; ?></td>
+                                                    <td><?php echo $d['icon']; ?></td>
                                                     <td>
 
-                                                        <a class="btn btn-success btn-sm" href="edit.php?id=<?php echo $d['has_modul']; ?>" role="button">Edit</a>
-                                                        <a class="btn btn-danger btn-sm" href="delete.php?aksi=delete&id=<?php echo $d['has_modul']; ?>" onclick="return confirm('Yakin Hapus?')" role="button">Delete</a>
+                                                        <a class="btn btn-success btn-sm" href="edit.php?id=<?php echo $d['has_menu']; ?>" role="button">Edit</a>
+                                                        <a class="btn btn-danger btn-sm" href="delete.php?aksi=delete&id=<?php echo $d['has_menu']; ?>" role="button">Delete</a>
                                                     </td>
                                                 </tr>
                                             <?php }
