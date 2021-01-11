@@ -40,24 +40,25 @@
                         </div>
                         <div class="login-form">
                             <h4>Login</h4>
-                            <form>
+                            <form method="post" action="login.php" class="needs-validation">
+
                                 <div class="form-group">
                                     <label>Email address</label>
-                                    <input type="email" class="form-control" placeholder="Email">
+                                    <input type="email" class="form-control" placeholder="Email" name="email">
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="password" class="form-control" placeholder="Password">
+                                    <input type="password" class="form-control" placeholder="Password" name="pass">
                                 </div>
                                 <div class="checkbox">
-                                    
+
                                     <label class="pull-right">
-										<a href="forgot.php">Forgotten Password?</a>
-									</label>
+                                        <a href="forgot.php">Forgotten Password?</a>
+                                    </label>
 
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>
-                                
+
                                 <div class="register-link m-t-15 text-center">
                                     <p>Don't have account ? <a href="register.php"> Sign Up Here</a></p>
                                     <p><a href="../index.php"> HOME</a></p>
