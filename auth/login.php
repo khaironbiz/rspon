@@ -1,6 +1,7 @@
 <?php
 session_start(); // Memulai Session
-$error = ''; // Variabel untuk menyimpan pesan error
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST['email']) || empty($_POST['pass'])) {
         $error = "Username or Password is invalid";
@@ -26,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         if ($rows == 1) {
             $_SESSION['login_user'] = $users['email']; // Membuat Sesi/session
-
+            $_SESSION['status']     = "Login";
             header("location: ../admin/modul/index.php"); // Mengarahkan ke halaman profil
         }
 
