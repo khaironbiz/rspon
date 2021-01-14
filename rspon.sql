@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 08, 2021 at 11:11 AM
+-- Generation Time: Jan 12, 2021 at 10:03 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -73,6 +73,26 @@ CREATE TABLE `db_sub_master` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `icon`
+--
+
+CREATE TABLE `icon` (
+  `id` int(11) NOT NULL,
+  `code_icon` varchar(10) NOT NULL,
+  `nama_icon` varchar(50) NOT NULL,
+  `has_icon` varchar(155) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `icon`
+--
+
+INSERT INTO `icon` (`id`, `code_icon`, `nama_icon`, `has_icon`) VALUES
+(1, 'ti-home', 'home', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `mak`
 --
 
@@ -100,16 +120,16 @@ CREATE TABLE `menu` (
   `nama_menu` varchar(100) NOT NULL,
   `icon` varchar(50) NOT NULL,
   `create` timestamp NOT NULL DEFAULT current_timestamp(),
-  `has` varchar(150) NOT NULL
+  `has_menu` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `menu`
 --
 
-INSERT INTO `menu` (`id`, `id_modul`, `folder_menu`, `nama_menu`, `icon`, `create`, `has`) VALUES
-(1, 1, 'perencanaan', 'MAK', 'ti-wallet', '2021-01-07 05:03:30', ''),
-(2, 2, 'biodata', 'profile', 'ti-home', '2021-01-08 07:25:14', '');
+INSERT INTO `menu` (`id`, `id_modul`, `folder_menu`, `nama_menu`, `icon`, `create`, `has_menu`) VALUES
+(3, 1, 'str', 'STR', 'ti-home', '2021-01-12 04:50:06', '848b71370ab88f28a05a70a4394479ba'),
+(4, 1, 'sip', 'SIP', 'ti-home', '2021-01-12 04:53:13', 'fb28bcefe2d05a92a0959b684b7b0074');
 
 -- --------------------------------------------------------
 
@@ -139,6 +159,13 @@ CREATE TABLE `modul` (
   `create` timestamp NOT NULL DEFAULT current_timestamp(),
   `has_modul` varchar(155) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `modul`
+--
+
+INSERT INTO `modul` (`id`, `nama_modul`, `folder_modul`, `create`, `has_modul`) VALUES
+(1, 'Legal', 'legal', '2021-01-12 04:47:00', '8dee7deff28f1f72e62bbbedb17fa1f7');
 
 -- --------------------------------------------------------
 
@@ -800,8 +827,8 @@ CREATE TABLE `sub_menu` (
 --
 
 INSERT INTO `sub_menu` (`id`, `id_modul`, `id_menu`, `nama_submenu`, `link`, `create`, `has_submenu`) VALUES
-(1, 1, 1, 'POK', 'pok.php', '2021-01-07 06:22:36', ''),
-(2, 2, 2, 'Profile', 'index.php', '2021-01-08 07:25:55', '');
+(4, 1, 3, 'Rekom', 'rekom.php', '2021-01-12 05:28:28', '025d7e174ff8008affc80d4ff98ee88c'),
+(5, 1, 4, 'Rekom SIPP', 'rekom sipp', '2021-01-12 05:34:44', '48784468199f8800ee54df2e8aadd067');
 
 -- --------------------------------------------------------
 
@@ -842,6 +869,12 @@ ALTER TABLE `db_master`
 -- Indexes for table `db_sub_master`
 --
 ALTER TABLE `db_sub_master`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `icon`
+--
+ALTER TABLE `icon`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -915,6 +948,12 @@ ALTER TABLE `db_sub_master`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `icon`
+--
+ALTER TABLE `icon`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `mak`
 --
 ALTER TABLE `mak`
@@ -924,7 +963,7 @@ ALTER TABLE `mak`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `menu_role`
@@ -936,7 +975,7 @@ ALTER TABLE `menu_role`
 -- AUTO_INCREMENT for table `modul`
 --
 ALTER TABLE `modul`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `nira`
@@ -954,7 +993,7 @@ ALTER TABLE `pok`
 -- AUTO_INCREMENT for table `sub_menu`
 --
 ALTER TABLE `sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
