@@ -21,13 +21,13 @@ require_once($sub);
                             <h3><?php echo $title ?></h3>
                             <div class="bootstrap-data-table-panel">
                                 <div class="table-responsive">
-                                    <a href="create.php" class="btn btn-primary btn-sm" role="button" >Tambah Modul</a>
+                                    <a href="create.php" class="btn btn-primary btn-sm" role="button" >Add Icon</a>
                                     <table class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Kode Icon</th>
                                                 <th>Nama Icon</th>
+                                                <th>Kode Icon</th>
                                                 <th>Icon</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -39,16 +39,17 @@ require_once($sub);
                                             while ($d = mysqli_fetch_assoc($data)) {
                                             ?>
                                                 <tr>
-                                                    <td><?php echo $d['id']; ?></td>
-                                                    <td><?php echo $d['code_icon']; ?></td>
+                                                    <td><?php echo $no ?></td>
                                                     <td><?php echo $d['nama_icon']; ?></td>
-                                                    <td></td>
+                                                    <td><?php echo $d['code_icon']; ?></td>
+                                                    <td><i class="<?php echo $d['code_icon']; ?>"></i></td> 
                                                     <td>
-                                                        <a class="btn btn-success btn-sm"   href="edit.php?id=<?php echo $d['has_modul']; ?>" role="button">Edit</a>
-                                                        <a class="btn btn-danger btn-sm"    href="delete.php?aksi=delete&id=<?php echo $d['has_modul']; ?>" onclick="return confirm('Yakin Hapus?')" role="button">Delete</a>
+                                                        
+                                                        <a class="badge bg-danger"    href="delete.php?aksi=delete&id=<?php echo $d['has_icon']; ?>" onclick="return confirm('Yakin Hapus?')" role="button"><i class="ti-trash"></i></a>
                                                     </td>
                                                 </tr>
                                             <?php 
+                                            $no++;
                                             }
                                             ?>
                                         </tbody>

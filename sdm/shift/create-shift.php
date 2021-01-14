@@ -7,25 +7,24 @@ require_once '../../config/layout/fluid.php';
 
 //aksi form
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id_modul           = $_POST['id_modul'];
-    $nama_menu          = $_POST['nama_menu'];
-    $folder_menu        = $_POST['folder_menu'];
-    $has_menu           = md5(time());
-    $icon               = $_POST['icon'];
-    $count_nama_menu    = mysqli_num_rows(mysqli_query($koneksi, "SELECT * FROM menu where nama_menu='$nama_menu'"));
-    $count_folder_menu  = mysqli_num_rows(mysqli_query($koneksi, "SELECT * FROM menu where folder_menu='$folder_menu'"));
-    if ($count_nama_menu < 1 and $count_folder_menu < 1) {
+    $id_shift           = $_POST['id_shift'];
+    $code_shift         = $_POST['code_shift'];
+    $masuk              = $_POST['masuk'];
+    $keluar             = $_POST['keluar'];
+    $has_shift          = md5(time());
+    
+    
         $input          = mysqli_query($koneksi, 
-                        "INSERT INTO menu SET 
-                            id_modul        ='$id_modul', 
-                            nama_menu       ='$nama_menu', 
-                            icon            ='$icon', 
-                            folder_menu     ='$folder_menu', 
-                            has_menu        ='$has_menu'");
+                        "INSERT INTO shift SET 
+                            id_shift        ='$id_shift', 
+                            code_shift      ='$code_shift', 
+                            masuk           ='$masuk', 
+                            keluar          ='$keluar', 
+                            has_shift       ='$has_shift'");
         if ($input) {
-            echo "<script>document.location=\"index.php\"</script>";
+            echo "<script>document.location=\"jam-shift.php\"</script>";
         }
-    }
+    
 }
 ?>
 <div class="content-wrap">
@@ -44,13 +43,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="form-group row">
                                     <label for="inputEmail3" class="col-sm-2 col-form-label">Nama Modul</label>
                                     <div class="col-sm-10">
-                                        <select class="form-control" name="id_modul" name="id_modul">
-                                            <option value="">--Pilih Modul--</option>
+                                        <select class="form-control" name="id_shift">
+                                            <option value="">--Pilih Shift--</option>
                                             <?php
-                                            $data = mysqli_query($koneksi, "SELECT * FROM modul ORDER BY nama_modul ASC");
+                                            $data = mysqli_query($koneksi, "SELECT * FROM db_sub_master WHERE id_master='1' ORDER BY id ASC");
                                             while ($d = mysqli_fetch_assoc($data)) {
                                             ?>
-                                                <option value="<?php echo $d['id'] ?>"><?php echo $d['nama_modul'] ?></option>
+                                                <option value="<?php echo $d['id'] ?>"><?php echo $d['nama_submaster'] ?></option>
                                             <?php
                                             }
                                             ?>
@@ -58,21 +57,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Nama Menu</label>
+                                    <label class="col-sm-2 col-form-label">Kode Shift</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="nama_menu" class="form-control">
+                                        <input type="text" name="code_shift" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Folder Menu</label>
+                                    <label class="col-sm-2 col-form-label">Masuk</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="folder_menu" class="form-control">
+                                        <input type="time" name="masuk" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Icon Menu</label>
+                                    <label class="col-sm-2 col-form-label">Keluar</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="icon" class="form-control">
+                                        <input type="time" name="keluar" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -90,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="footer">
-                            <p>2018 © Admin Board. - <a href="<?php echo $base_url; ?>"target=_blank><?php echo $nama_web?></a></p>
+                            <p>2018 © Admin Board. - <a href="#">example.com</a></p>
                         </div>
                     </div>
                 </div>

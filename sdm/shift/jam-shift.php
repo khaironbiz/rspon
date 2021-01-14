@@ -1,5 +1,5 @@
 <?php
-$title = 'Master Modul';
+$title = 'Master Menu';
 $sub    = "../../config/layout/fluid.php";
 require_once '../../config/koneksi/koneksi.php';
 require_once '../../config/koneksi/web.php';
@@ -17,40 +17,47 @@ require_once($sub);
             <!-- /# row -->
             <section id="main-content">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-10">
                         <div class="card">
                             <h3><?php echo $title ?></h3>
-
                             <div class="bootstrap-data-table-panel">
                                 <div class="table-responsive">
-                                    <a href="create.php" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Tambah Modul</a>
+                                    <a href="create-shift.php" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Tambah Shift</a>
                                     <table class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Nama Modul</th>
-                                                <th>Folder Modul</th>
-                                                <th>Dibuat</th>
+                                                <th>Shift</th>
+                                                <th>Kode</th>
+                                                <th>Masuk</th>
+                                                <th>Keluar</th>
+                                                <th>Jam Kerja</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
                                             $no = 1;
-                                            $data = mysqli_query($koneksi, "SELECT * FROM modul ORDER BY nama_modul ASC");
+                                            $data = mysqli_query($koneksi, "SELECT * FROM shift 
+                                                INNER JOIN db_sub_master on shift.id_shift=db_sub_master.id
+                                                ORDER BY shift.id ASC");
                                             while ($d = mysqli_fetch_assoc($data)) {
                                             ?>
                                                 <tr>
-                                                    <td><?php echo $d['id']; ?></td>
-                                                    <td><?php echo $d['nama_modul']; ?></td>
-                                                    <td><?php echo $d['folder_modul']; ?></td>
-                                                    <td><?php echo $d['create']; ?></td>
+                                                    <td><?php echo $no ?></td>
+                                                    <td><?php echo $d['nama_submaster']; ?></td>
+                                                    <td><?php echo $d['code_shift']; ?></td>
+                                                    <td><?php echo $d['masuk']; ?></td>
+                                                    <td><?php echo $d['keluar']; ?></td>
+                                                    <td><?php echo $d['keluar']; ?></td>
                                                     <td>
-                                                        <a class="btn btn-success btn-sm" href="edit.php?id=<?php echo $d['has_modul']; ?>" role="button">Edit</a>
-                                                        <a class="btn btn-danger btn-sm" href="delete.php?aksi=delete&id=<?php echo $d['has_modul']; ?>" onclick="return confirm('Yakin Hapus?')" role="button">Delete</a>
+                                                        <a class="btn btn-success btn-sm" href="edit.php?id=<?php echo $d['has_menu']; ?>" role="button">Edit</a>
+                                                        <a class="btn btn-danger btn-sm" href="delete.php?aksi=delete&id=<?php echo $d['has_menu']; ?>" onclick="return confirm('Yakin Hapus?')" role="button">Delete</a>
                                                     </td>
                                                 </tr>
-                                            <?php }
+                                            <?php 
+                                            $no++;
+                                        }
                                             ?>
                                         </tbody>
                                     </table>
@@ -65,7 +72,7 @@ require_once($sub);
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="footer">
-                            <p>2018 © Admin Board. - <a href="<?php echo $base_url; ?>"target=_blank><?php echo $nama_web?></a></p>
+                            <p>2018 © Admin Board. - <a href="#">example.com</a></p>
                         </div>
                     </div>
                 </div>

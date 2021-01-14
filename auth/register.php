@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email      = $_POST['email'];
     $pass       = md5($_POST['pass']);
     $pass_c     = md5($_POST['pass2']);
-    $has_user   = md5(rand());
+    $has_user   = md5(time());
     if ($pass == $pass_c) {
         $sql_email      = mysqli_query($koneksi, "SELECT * FROM users WHERE email='$email'");
         $count_email    = mysqli_num_rows($sql_email);

@@ -20,20 +20,19 @@
                                 <li><a class="sidebar-sub-toggle"><i class="<?php echo $c['icon']; ?>"></i> <?php echo $c['nama_menu']; ?> <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                                     <?php
                                     $id_menu        = $c['id'];
-                                    $data_submenu   = mysqli_query($koneksi, "SELECT * FROM sub_menu WHERE id_menu ='$id_menu'");
+                                    $data_submenu   = mysqli_query($koneksi, "SELECT * FROM sub_menu 
+                                                        INNER JOIN menu on menu.id=sub_menu.id_menu 
+                                                        INNER JOIN modul on modul.id=sub_menu.id_modul
+                                                        WHERE sub_menu.id_menu ='$id_menu'");
                                     while ($b = mysqli_fetch_assoc($data_submenu)) {
-
                                     ?>
                                         <ul>
-                                            <li><a href="<?php echo $base_url . $d['folder_modul'] . "/" . $d['folder_menu'] . "/" . $d['link']; ?>"><?php echo $b['nama_submenu']; ?></a></li>
+                                            <li><a href="<?php echo $base_url . $b['folder_modul'] . "/" . $b['folder_menu'] . "/" . $b['link']; ?>"><?php echo $b['nama_submenu']; ?></a></li>
                                         </ul>
-
-
                                 <?php
                                     }
                                 }
                                 ?>
-
                                 </li>
                             <?php
                         }

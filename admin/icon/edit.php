@@ -6,9 +6,9 @@ require_once '../../config/layout/sidebar.php';
 require_once '../../config/layout/fluid.php';
 
 //mengambil data
-$has_modul  = $_GET['id'];
-$data_modul = mysqli_query($koneksi, "SELECT * FROM modul WHERE has_modul='$has_modul'");
-$row_modul  = mysqli_fetch_assoc($data_modul);
+$has_icon  = $_GET['id'];
+$data = mysqli_query($koneksi, "SELECT * FROM icon WHERE has_icon='$has_icon'");
+$row  = mysqli_fetch_assoc($data);
 
 //aksi form
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -39,16 +39,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <h4><?php echo $title ?></h4>
                             <form action="" method="POST">
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-2 col-form-label">Nama Modul</label>
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">Nama Icon</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="nama_modul" class="form-control" value="<?php echo $row_modul['nama_modul'] ?>">
+                                        <input type="text" name="nama_modul" class="form-control" value="<?php echo $row['nama_modul'] ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputPassword3" class="col-sm-2 col-form-label">Nama Folder</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="folder_modul" class="form-control" value="<?php echo $row_modul['folder_modul'] ?>">
-                                        <input type="hidden" name="has_modul" class="form-control" value="<?php echo $row_modul['has_modul'] ?>">
+                                        <input type="text" name="folder_modul" class="form-control" value="<?php echo $row['folder_modul'] ?>">
+                                        <input type="hidden" name="has_modul" class="form-control" value="<?php echo $row['has_modul'] ?>">
                                     </div>
                                 </div>
 

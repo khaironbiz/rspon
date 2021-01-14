@@ -27,5 +27,10 @@
     </head>
 <body>
 <?php
-$base_url   = "http://localhost/rspon/";
+include("../../config/koneksi/koneksi.php");
+$sql_web        = "SELECT * FROM web";
+$data_web       = mysqli_fetch_assoc(mysqli_query($koneksi, $sql_web));
+$base_url       = $data_web['base_url'];
+$logo           = $data_web['logo'];
+$nama_web       = $data_web['nama_web'];
 ?>

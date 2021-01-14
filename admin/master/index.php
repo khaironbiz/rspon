@@ -1,5 +1,5 @@
 <?php
-$title = 'Master Modul';
+$title = 'Master Data Base';
 $sub    = "../../config/layout/fluid.php";
 require_once '../../config/koneksi/koneksi.php';
 require_once '../../config/koneksi/web.php';
@@ -13,23 +13,22 @@ require_once($sub);
             <?php
             include('../menu.php')
             ?>
-
             <!-- /# row -->
             <section id="main-content">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="card">
                             <h3><?php echo $title ?></h3>
-
                             <div class="bootstrap-data-table-panel">
                                 <div class="table-responsive">
-                                    <a href="create.php" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Tambah Modul</a>
+                                    <a href="create.php" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Tambah Master</a>
                                     <table class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Nama Modul</th>
-                                                <th>Folder Modul</th>
+                                                <th>Nama Master</th>
+                                                <th>ID</th>
+                                                <th>Count</th>
                                                 <th>Dibuat</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -37,20 +36,31 @@ require_once($sub);
                                         <tbody>
                                             <?php
                                             $no = 1;
-                                            $data = mysqli_query($koneksi, "SELECT * FROM modul ORDER BY nama_modul ASC");
+                                            $data = mysqli_query($koneksi, "SELECT * FROM db_master ORDER BY nama_master ASC");
                                             while ($d = mysqli_fetch_assoc($data)) {
                                             ?>
                                                 <tr>
+                                                    <td><?php echo $no ; ?></td>
+                                                    <td><?php echo $d['nama_master']; ?></td>
                                                     <td><?php echo $d['id']; ?></td>
-                                                    <td><?php echo $d['nama_modul']; ?></td>
-                                                    <td><?php echo $d['folder_modul']; ?></td>
+                                                    <?php 
+                                                    $id_master  = $d['id'];
+                                                    $sql_count  = "SELECT * FROM db_sub_master WHERE id_master='$id_master'";
+                                                    $count      = mysqli_num_rows(mysqli_query($koneksi,"$sql_count"));
+                                                    ?>
+                                                    <td>
+                                                    <a class="btn btn-primary btn-sm" href="<?php echo $base_url ?>admin/sub_master/create2.php?id=<?php echo $d['has_master']; ?>" role="button"><?php echo $count; ?> Add</a>
+                                                    </td>
                                                     <td><?php echo $d['create']; ?></td>
                                                     <td>
-                                                        <a class="btn btn-success btn-sm" href="edit.php?id=<?php echo $d['has_modul']; ?>" role="button">Edit</a>
-                                                        <a class="btn btn-danger btn-sm" href="delete.php?aksi=delete&id=<?php echo $d['has_modul']; ?>" onclick="return confirm('Yakin Hapus?')" role="button">Delete</a>
+                                                        
+                                                        <a class="btn btn-success btn-sm" href="edit.php?id=<?php echo $d['has_master']; ?>" role="button">Edit</a>
+                                                        <a class="btn btn-danger btn-sm" href="delete.php?aksi=delete&id=<?php echo $d['has_master']; ?>" onclick="return confirm('Yakin Hapus?')" role="button">Delete</a>
                                                     </td>
                                                 </tr>
-                                            <?php }
+                                            <?php 
+                                            $no++;
+                                        }
                                             ?>
                                         </tbody>
                                     </table>
